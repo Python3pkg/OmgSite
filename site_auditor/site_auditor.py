@@ -223,7 +223,7 @@ class SiteAuditor():
 		"""
 		gpr_hash_seed = "Mining PageRank is AGAINST GOOGLE'S TERMS OF SERVICE. Yes, I'm talking to you, scammer."
 		magic = 0x1020345
-		for i in iter(range(len(self.site))):
+		for i in iter(list(range(len(self.site)))):
 			magic ^= ord(gpr_hash_seed[i % len(gpr_hash_seed)]) ^ ord(self.site[i])
 			magic = (magic >> 23 | magic << 9) & 0xFFFFFFFF
 		url = "http://toolbarqueries.google.com/tbr?client=navclient-auto&features=Rank&ch=%s&q=info:%s" % \
@@ -371,4 +371,4 @@ class SiteAuditor():
 
 
 if __name__ == '__main__':
-	print(SiteAuditor(input('Enter site, please: '), input('Full scan? y/n/2w ')))
+	print((SiteAuditor(eval(input('Enter site, please: ')), eval(input('Full scan? y/n/2w ')))))
